@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESIC Pune Healthcare Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <h1>ESIC Pune Healthcare Dashboard</h1>
+                    <p>Digital Command Center - 21 Dispensaries + 1 Hospital</p>
+                </div>
+                <div class="header-controls">
+                    <button class="theme-toggle" id="themeToggle">🌙</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="tab-navigation">
+        <div class="container">
+            <ul class="nav-tabs">
+                <li><button class="tab-btn active" data-tab="overview">Overview</button></li>
+                <li><button class="tab-btn" data-tab="analysis">Analysis</button></li>
+                <li><button class="tab-btn" data-tab="directory">Facility Directory</button></li>
+                <li><button class="tab-btn" data-tab="monitor">Performance Monitor</button></li>
+                <li><button class="tab-btn" data-tab="alerts">Alerts & Notifications</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="dashboard-main">
+        <!-- Overview Tab -->
+        <section id="overview-tab" class="tab-content active">
+            <div class="container">
+                <!-- Enhanced Control Panel -->
+                <div class="control-panel">
+                    <div class="control-section">
+                        <h3>Strategic Command Center</h3>
+                        <p>Real-time facility monitoring and performance analytics</p>
+                    </div>
+                    <div class="control-dropdowns">
+                        <div class="dropdown-group">
+                            <label for="facilitySelect">Select Facility:</label>
+                            <select id="facilitySelect" class="control-dropdown">
+                                <option value="All Facilities">All Facilities</option>
+                                <option value="Chinchwad">Chinchwad</option>
+                                <option value="Sanaswadi">Sanaswadi</option>
+                                <option value="Chakan">Chakan</option>
+                                <option value="Talegaon">Talegaon</option>
+                                <option value="Khed Shivapur">Khed Shivapur</option>
+                                <option value="Baramati">Baramati</option>
+                                <option value="Hadapsar">Hadapsar</option>
+                                <option value="Kurkumbh">Kurkumbh</option>
+                                <option value="Uruli Kanchan">Uruli Kanchan</option>
+                                <option value="Bhosari">Bhosari</option>
+                                <option value="Mulshi">Mulshi</option>
+                                <option value="Lonavala">Lonavala</option>
+                                <option value="Ranjhangaon">Ranjhangaon</option>
+                                <option value="Hinjewadi">Hinjewadi</option>
+                                <option value="Saswad">Saswad</option>
+                                <option value="Wagholi">Wagholi</option>
+                                <option value="Pirangut">Pirangut</option>
+                                <option value="Shirur">Shirur</option>
+                                <option value="Rajguru Nagar">Rajguru Nagar</option>
+                                <option value="Daund">Daund</option>
+                                <option value="Alandi">Alandi</option>
+                                <option value="Dhanwantari Hospital">Dhanwantari Hospital</option>
+                            </select>
+                        </div>
+                        <div class="dropdown-group">
+                            <label for="timePeriodSelect">Time Period:</label>
+                            <select id="timePeriodSelect" class="control-dropdown">
+                                <option value="Daily">Daily</option>
+                                <option value="Weekly">Weekly</option>
+                                <option value="Monthly" selected>Monthly</option>
+                                <option value="Quarterly">Quarterly</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Metrics Grid -->
+                <div class="metrics-grid">
+                    <div class="metric-card" data-tooltip="Total patient footfall across selected facility/period">
+                        <div class="metric-icon">👥</div>
+                        <div class="metric-info">
+                            <h3 id="totalFootfall">29,399</h3>
+                            <p>Total Footfall</p>
+                            <div class="metric-trend">
+                                <span class="trend-indicator up">↗</span>
+                                <span class="trend-value">+12.5%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card" data-tooltip="Total prescriptions processed">
+                        <div class="metric-icon">💊</div>
+                        <div class="metric-info">
+                            <h3 id="totalPrescriptions">17,749</h3>
+                            <p>Total Prescriptions</p>
+                            <div class="metric-trend">
+                                <span class="trend-indicator up">↗</span>
+                                <span class="trend-value">+8.2%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card" data-tooltip="Total referrals managed">
+                        <div class="metric-icon">🔄</div>
+                        <div class="metric-info">
+                            <h3 id="totalReferrals">3,128</h3>
+                            <p>Total Referrals</p>
+                            <div class="metric-trend">
+                                <span class="trend-indicator up">↗</span>
+                                <span class="trend-value">+5.1%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card" data-tooltip="Total certificates issued">
+                        <div class="metric-icon">📋</div>
+                        <div class="metric-info">
+                            <h3 id="totalCertificates">2,300</h3>
+                            <p>Total Certificates</p>
+                            <div class="metric-trend">
+                                <span class="trend-indicator up">↗</span>
+                                <span class="trend-value">+3.8%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card" data-tooltip="New patient registrations">
+                        <div class="metric-icon">📝</div>
+                        <div class="metric-info">
+                            <h3 id="newRegistrations">5,420</h3>
+                            <p>New Registrations</p>
+                            <div class="metric-trend">
+                                <span class="trend-indicator up">↗</span>
+                                <span class="trend-value">+7.3%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="metric-card" data-tooltip="New claims processed">
+                        <div class="metric-icon">💰</div>
+                        <div class="metric-info">
+                            <h3 id="newClaims">284</h3>
+                            <p>New Claims</p>
+                            <div class="metric-trend">
+                                <span class="trend-indicator down">↘</span>
+                                <span class="trend-value">-2.1%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Modules -->
+                <div class="service-modules">
+                    <h3>Service Modules</h3>
+                    <div class="modules-grid">
+                        <div class="module-card" data-tooltip="Patient registration and check-in management">
+                            <div class="module-icon">👥</div>
+                            <div class="module-info">
+                                <h4>Registration</h4>
+                                <p>Patient Management</p>
+                                <div class="module-status active">Active</div>
+                            </div>
+                        </div>
+
+                        <div class="module-card" data-tooltip="Clinical records and prescription management">
+                            <div class="module-icon">📋</div>
+                            <div class="module-info">
+                                <h4>Clinical Records</h4>
+                                <p>Medical Documentation</p>
+                                <div class="module-status active">Active</div>
+                            </div>
+                        </div>
+
+                        <div class="module-card" data-tooltip="Pharmacy and medicine dispensing">
+                            <div class="module-icon">💊</div>
+                            <div class="module-info">
+                                <h4>Pharmacy</h4>
+                                <p>Medicine Management</p>
+                                <div class="module-status active">Active</div>
+                            </div>
+                        </div>
+
+                        <div class="module-card" data-tooltip="Patient referral management">
+                            <div class="module-icon">🔄</div>
+                            <div class="module-info">
+                                <h4>Referrals</h4>
+                                <p>Transfer Management</p>
+                                <div class="module-status active">Active</div>
+                            </div>
+                        </div>
+
+                        <div class="module-card" data-tooltip="Certificate issuance and management">
+                            <div class="module-icon">📄</div>
+                            <div class="module-info">
+                                <h4>Certificates</h4>
+                                <p>Document Issuance</p>
+                                <div class="module-status active">Active</div>
+                            </div>
+                        </div>
+
+                        <div class="module-card" data-tooltip="Claims processing and reimbursement">
+                            <div class="module-icon">💰</div>
+                            <div class="module-info">
+                                <h4>Claims</h4>
+                                <p>Reimbursement</p>
+                                <div class="module-status active">Active</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Charts -->
+                <div class="charts-section">
+                    <div class="chart-container">
+                        <h3>Performance Trends</h3>
+                        <canvas id="performanceChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Service Distribution</h3>
+                        <canvas id="serviceChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Tab -->
+        <section id="analysis-tab" class="tab-content">
+            <div class="container">
+                <h2>Comparative Analysis</h2>
+                <div class="analysis-controls">
+                    <select id="analysisMetric" class="form-control">
+                        <option value="footfall">Patient Footfall</option>
+                        <option value="prescriptions">Prescriptions</option>
+                        <option value="referrals">Referrals</option>
+                        <option value="certificates">Certificates</option>
+                    </select>
+                </div>
+                <div class="analysis-charts">
+                    <div class="chart-container">
+                        <canvas id="comparisonChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facility Directory Tab -->
+        <section id="directory-tab" class="tab-content">
+            <div class="container">
+                <h2>Facility Directory</h2>
+                <div class="directory-controls">
+                    <input type="text" id="facilitySearch" placeholder="Search facilities..." class="form-control">
+                    <select id="facilityFilter" class="form-control">
+                        <option value="all">All Types</option>
+                        <option value="Dispensary">Dispensaries</option>
+                        <option value="Hospital">Hospitals</option>
+                    </select>
+                </div>
+                <div class="facilities-grid" id="facilitiesGrid">
+                    <!-- Facility cards will be populated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Monitor Tab -->
+        <section id="monitor-tab" class="tab-content">
+            <div class="container">
+                <h2>Performance Monitor</h2>
+                <div class="performance-grid">
+                    <div class="performance-card">
+                        <h3>Network Status</h3>
+                        <div class="status-indicator">
+                            <div class="status-circle active"></div>
+                            <span>All Systems Operational</span>
+                        </div>
+                    </div>
+                    <div class="performance-card">
+                        <h3>Target Achievement</h3>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 92%"></div>
+                            <span class="progress-text">92% of Monthly Target</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Alerts Tab -->
+        <section id="alerts-tab" class="tab-content">
+            <div class="container">
+                <h2>Alerts & Notifications</h2>
+                <div class="alerts-grid">
+                    <div class="alert-card critical">
+                        <div class="alert-icon">🚨</div>
+                        <div class="alert-content">
+                            <h4>Critical Alert</h4>
+                            <p>Bhosari dispensary showing declining footfall</p>
+                            <span class="alert-time">2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="alert-card warning">
+                        <div class="alert-icon">⚠️</div>
+                        <div class="alert-content">
+                            <h4>Resource Alert</h4>
+                            <p>Medical supplies running low at 3 facilities</p>
+                            <span class="alert-time">4 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="alert-card info">
+                        <div class="alert-icon">ℹ️</div>
+                        <div class="alert-content">
+                            <h4>Information</h4>
+                            <p>Staff training scheduled for next week</p>
+                            <span class="alert-time">1 day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+        <div class="container">
+            <p>Copyright © DigiFacility Team – DPH_CoE</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
